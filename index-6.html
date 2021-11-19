@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1-10 arası sayı üreten bir sayıyı aşagı yukarı ifadeleri ile buldurmaya çalışın
+        // puanlama yapmak
+        // kullanıcı kaç kerede bileceğini belirtebilsin
+
+        var hak = 5;
+        var tahmin,sayac = 0;
+        var sayi = Math.floor((Math.random()*10)+1);
+
+     console.log(sayi);
+     while(hak>0){
+         hak--;
+         sayac++;
+         tahmin = Number(prompt('bir sayı giriniz'));
+
+         if(sayi==tahmin){
+             console.log(`Tebrikler ${sayac} defada bildiniz`);
+             console.log(`puan : ${100 - (20*(sayac-1))}`);
+             break;
+         }else if (sayi > tahmin){
+             console.log("Yukarı");
+         }else{
+             console.log("Aşagı");
+         }
+         if(hak==0){
+             console.log('Hakkınız bitti sayı : '+sayi);
+         }
+     }
+       
+    </script>
+</body>
+</html>
