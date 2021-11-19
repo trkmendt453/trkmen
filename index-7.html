@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      
+      var hesapA = {
+          ad : 'Durmuş Türkmen',
+          hesapNo : '12365498',
+          bakiye : 2000,
+          ekHesap : 1000
+      }
+       var hesapB = {
+           ad : 'Ahmet Saban',
+           hesapNo : '24562315',
+           bakiye : 3000,
+           ekHesap : 1500
+       }
+
+       function paraCek(hesap,miktar){
+           console.log(`Merhaba ${hesap.ad}`);
+           if(hesap.bakiye>= miktar){
+               console.log('Paranızı alabilirsiniz.');
+           }else{
+               var toplam = hesap.bakiye + hesap.ekHesap;
+                if(toplam>=miktar){
+                    if(confirm('ek hesabınızı kullanmak ister misiniz.')){ 
+                        console.log('paranızı alabilirsiniz');
+                    }else{
+                        console.log(`${hesap.hesapNo} nolu hesabınızda ${miktar} TL bulunmamaktadır.`);
+                    }
+                }else{
+                    console.log('üzgünüz bakiye yetersiz');
+                }
+            
+           }
+        }
+
+       paraCek(hesapA,4000);
+     
+       
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>  
