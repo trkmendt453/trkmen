@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // NESNE OLUŞTURMA : CONSTRUCTOR
+        function person(name, yearOfBrith, job) {
+            this.name = name,
+                this.yearOfBrith = yearOfBrith,
+                this.job = job,
+                this.calculageAge = function () {
+                    return 2021 - this.yearOfBrith
+                }
+        }
+
+        let durmus = new person('Durmus', 1999, 'student');
+        let ahmet = new person('Ahmet', 1998, 'student');
+        console.log(durmus.job);
+        console.log(durmus.name);
+        console.log(durmus.yearOfBrith);
+        console.log(durmus.calculageAge());
+
+        console.log('*********************');
+
+        console.log(ahmet.job);
+        console.log(ahmet.name);
+        console.log(ahmet.yearOfBrith);
+        console.log(ahmet.calculageAge());
+
+        console.log('*******************');
+
+        // PROTOTYPE
+        function person1(name, yearOfBrith, job) {
+            this.name = name,
+                this.yearOfBrith = yearOfBrith,
+                this.job = job
+        }
+        person1.prototype.calculageAge = function () {
+            return 2021 - this.yearOfBrith
+        }
+        person1.prototype.lastName = 'Türkmen';
+        let durmus1 = new person1('Durmus', 1999, 'student');
+        console.log(durmus1.calculageAge());
+        console.log(durmus1.lastName);
+        console.log(durmus1.hasOwnProperty('lastName'));
+
+        // Call functions
+        let val;
+
+        function MultipleByTwo(a, b, c, callback) {
+            let arr = [];
+            for (let i = 0; i < 3; i++) {
+                arr[i] = callback(arguments[i] * 2);
+            }
+            return arr;
+        }
+
+        function addOne(a) {
+            return a + 1;
+        }
+
+        function addtwo(a) {
+            return a + 2;
+        }
+        val = MultipleByTwo(5, 10, 20, addOne);
+        console.log(val);
+
+        // Immediate Functions
+        // (function(){
+        // }());
+
+        (function (name) {
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var today = new Date();
+            var msg = 'Welcome ' + name + ' Today is ' + days[today.getDay()];
+            console.log(msg);
+        }('Durmuş'));
+
+        console.log('************');
+
+        // fonksiyondan fonksiyon dönderme
+
+        function Question(hobby) {
+
+            switch (hobby) {
+                case 'car':
+                    return function (name) {
+                        console.log(name + ' do you have a car ?');
+                    }
+                    break;
+
+                case 'book':
+                    return function (name) {
+                        console.log(name + ' what is your favourite book ?');
+                    }
+                    break;
+
+                case 'software':
+                    return function (name, type) {
+                        console.log(name + ' are you interested in ' + type + ' ?');
+                    }
+                    break;
+
+                default:
+                    return function (name) {
+                        console.log(name + ' how are you ?');
+                    }
+            }
+        }
+        var carQuestion = Question('car');
+
+        carQuestion('Durmuş');
+
+        var bookQuestion = Question('book');
+
+        bookQuestion('Ahmet');
+
+        var softwareQuestion = Question('software');
+
+        softwareQuestion('Durmuş', 'node js');
+
+        console.log('**************************')
+
+        // ARROW FUNCTİON
+
+        let multiplyES6 = (x, y) => x * y;
+
+        console.log(multiplyES6(5, 6));
+
+        // arrow object literals
+        // ES5
+
+        let getProductES5 = function (id, name) {
+            return {
+                id: id,
+                name: name
+            }
+        }
+        console.log(getProductES5('1', 'Samsung S8'));
+        // ES6
+        let getProductES6 = (id, name) => ({
+            id: id,
+            name: name
+        });
+        console.log(getProductES6('1', 'IPhone 7'));
+
+        
+    </script>
+</body>
+
+</html>
