@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         // Callback functions
+         let val;
+
+function MultipleByTwo(a, b, c, callback) {
+    let arr = [];
+    for (let i = 0; i < 3; i++) {
+        arr[i] = callback(arguments[i] * 2);
+    }
+    return arr;
+}
+
+function addOne(a) {
+    return a + 1;
+}
+
+function addtwo(a) {
+    return a + 2;
+}
+val = MultipleByTwo(5, 10, 20, addOne);
+console.log(val);
+console.log('**********************************');
+
+// promise
+
+new Promise(function(resolve,reject){
+    setTimeout(() => {
+        resolve(5);
+    }, 1000);
+
+}).then(function(number){
+    console.log(number);
+    return number*number;
+}).then(function(number){
+    console.log(number);
+});
+console.log('***************************'); 
+
+const isMomHappy = true;
+
+ const willGetNewPhone = new Promise((resolves,rejects) =>{
+   if (isMomHappy){
+       const phone = {
+           name : 'Iphone 8',
+           price : 4000,
+           color : 'silver'
+       }
+       resolves(phone);
+   }else{
+       const error = new Error('mom is not happy');
+       rejects(error);
+   }
+});
+
+const askMom = function(){
+    willGetNewPhone
+    .then(data=>{
+        console.log(data)
+    })
+    .catch(error =>{
+        console.log(error);
+    })
+}
+
+askMom();
+console.log('**************************');
+// async await
+
+var isError = false;
+ function getCategory(){
+     return new Promise((resolve,reject) =>{
+         setTimeout(() => {
+           if(!isError){
+            resolve('phone');
+           }else{
+               rejects('error');
+           } 
+         }, 1000);
+     });
+ }
+
+ function getProducts(category){
+     return new Promise(resolve => {
+         setTimeout(() => {
+             resolve(`5 products in ${category}`);
+         }, 1000);
+     });
+ }
+ getCategory()
+ .then(getProducts)
+ .then(res => console.log(res))
+ .catch(err=>console.log(err));
+
+ async function getProduct(){
+
+    try{
+        let category =  await getCategory();
+       let result = await getProduct(category);
+       console.log(result);
+    }
+    catch(error){
+        console.log(error);
+    }
+      
+      
+ }
+
+ getProduct();
+ console.log('*******************************************');
+ new Promise((resolve,reject)=>{
+     resolve({
+         name : 'Durmuş',
+         surname : 'Türkmen'
+     })
+     reject('Çözülmedi')
+ })
+ .then(data => console.log(data))
+ .catch(data =>{
+     console.log(data)
+ });
+ console.log('**********************');
+ // promiseall
+ const prom1 = new Promise(resolve => setTimeout(resolve,1000,'Durmuş Türkmen' ))
+ const prom2 = new Promise(resolve => setTimeout(resolve,1000,'Durmuş Türkmen' ))
+ 
+ Promise.all([prom1,prom2])
+ .then(response => console.log(response))
+
+
+    </script>
+</body>
+</html>
